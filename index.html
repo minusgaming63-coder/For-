@@ -3,66 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise For You! ❤️</title>
+    <title>Special Surprise For You ❤️</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            color: #fff;
-            text-align: center;
-            padding: 30px 20px;
-            font-family: sans-serif;
+            background: linear-gradient(135deg, #ffccd5 0%, #fff0f3 100%);
+            height: 100vh;
             margin: 0;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-family: 'Pyidaungsu', sans-serif;
+            overflow: hidden;
+            text-align: center;
         }
-        
-        .heart {
-            font-size: 50px;
-            animation: bounce 1s infinite alternate;
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            max-width: 80%;
+            width: 300px;
+            z-index: 10;
+            position: relative;
         }
-
-        @keyframes bounce {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
-        }
-
-        h1 {
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            font-size: 24px;
-        }
-
-        p {
-            font-size: 16px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 10px 20px;
-            border-radius: 10px;
-            max-width: 90%;
-        }
-
-        img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
+        /* လေးထောင့်ပုံစံ ဓာတ်ပုံ */
+        img.main-photo {
+            width: 150px;
+            height: 200px;
             object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-            margin: 15px 0;
+            border-radius: 10px;
+            border: 4px solid #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
+        h2 {
+            color: #b5179e;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            margin-top: 30px;
+            height: 60px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        #yesBtn {
+            background-color: #f72585;
+            color: white;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+        }
+        #yesBtn:hover {
+            background-color: #b5179e;
+        }
+        #noBtn {
+            background-color: #e0e0e0;
+            color: #555;
+            position: absolute;
+        }
+        #noBtn:hover {
+            background-color: #d0d0d0;
+        }
+        .hidden-content {
+            display: none;
+            margin-top: 15px;
+            color: #b5179e;
+            font-size: 20px;
+            font-weight: bold;
+            animation: fadeInScale 1s ease-in-out;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ပျံနေတဲ့ ပုံများအတွက် CSS */
+        .floating-photo {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            pointer-events: none;
+            animation: floatAnimation infinite linear;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(calc(100vw - 50px), calc(100vh / 4)) rotate(90deg); }
+            50% { transform: translate(calc(100vw / 2), calc(100vh / 2)) rotate(180deg); }
+            75% { transform: translate(0, calc(100vh - 50px)) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .floating-photo:nth-child(1) { animation-duration: 15s; animation-delay: 0s; }
+        .floating-photo:nth-child(2) { animation-duration: 18s; animation-delay: 2s; }
+        .floating-photo:nth-child(3) { animation-duration: 20s; animation-delay: 4s; }
+        .floating-photo:nth-child(4) { animation-duration: 12s; animation-delay: 1s; }
+        .floating-photo:nth-child(5) { animation-duration: 22s; animation-delay: 5s; }
+        .floating-photo:nth-child(6) { animation-duration: 16s; animation-delay: 3s; }
+        .floating-photo:nth-child(7) { animation-duration: 19s; animation-delay: 7s; }
+        .floating-photo:nth-child(8) { animation-duration: 14s; animation-delay: 1.5s; }
     </style>
 </head>
 <body>
 
-    <div class="heart">💖</div>
-    <h1>🎉 မင်းအတွက် အထူး Surprise ပါ! 🎉</h1>
-    
-    <!-- ကိုယ့်ရဲ့ ပုံထည့်မယ့်နေရာ -->
-    <img src="IMG_20260221_125127_941.webp">
+    <!-- ပျံနေတဲ့ ပုံများ -->
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
 
-    <p>Happy Birthdayပါသဲသဲလေးရေ</p>
+    <div class="container" id="mainCard">
+        <!-- ပင်မပုံ (လေးထောင့်ပုံစံ၊ စာသားအလွန်အကျွံများ ဖယ်ထားသည်) -->
+        <img src="IMG_20260221_125127_941.webp" alt="My Love" class="main-photo">
+        <h2>ကိုယ့်ကို ချစ်လားဟင်? 🥺</h2>
+        
+        <div class="btn-group">
+            <button id="yesBtn" onclick="sayYes()">ချစ်တယ် ❤️</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">မချစ်ဘူး 😜</button>
+        </div>
+
+        <div id="successText" class="hidden-content">
+            ဟီးဟီး သိသားပဲ... ကို လည်း အများကြီး ချစ်တယ်နော် 😘✨
+        </div>
+    </div>
+
+    <script>
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function sayYes() {
+            document.getElementById('yesBtn').style.display = 'none';
+            document.getElementById('noBtn').style.display = 'none';
+            document.querySelector('h2').style.display = 'none';
+            document.getElementById('successText').style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
