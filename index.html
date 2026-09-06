@@ -27,7 +27,7 @@
             z-index: 10;
             position: relative;
         }
-        /* အသဲပုံအကြီးကြီးအတွက် စတိုင် */
+        /* အသဲပုံအကြီးကြီး */
         .big-heart {
             font-size: 70px;
             margin-bottom: 15px;
@@ -38,7 +38,7 @@
             50% { transform: scale(1.15); }
         }
 
-        /* ချစ်တယ်နှိပ်မှ ပေါ်မည့် လေးထောင့်ပုံကြီး */
+        /* ပထမ ပုံ (ချစ်တယ် နှိပ်မှပေါ်မည်) */
         img.result-photo {
             width: 150px;
             height: 200px;
@@ -50,13 +50,27 @@
             display: none;
             animation: fadeInScale 1s ease-in-out;
         }
+
+        /* နောက်ဆုံး လက်ဆောင်ပုံ (မယူဘူး နှိပ်မှပေါ်မည် - လိုအပ်ရင် နာမည်ပြောင်းနိုင်သည်) */
+        img.final-photo {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 4px solid #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            animation: fadeInScale 1s ease-in-out;
+        }
+
         h2 {
             color: #b5179e;
             font-size: 22px;
             margin-bottom: 25px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        /* ခလုတ်နှစ်ခုကို ဘယ်/ညာ သေသပ်စွာ ခွဲထုတ်ထားသော CSS */
+
         .btn-group {
             display: flex;
             justify-content: space-between;
@@ -75,20 +89,21 @@
             font-weight: bold;
             transition: 0.2s ease;
         }
-        #yesBtn {
+        #yesBtn, #noGiftBtn {
             background-color: #f72585;
             color: white;
             box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
         }
-        #yesBtn:hover {
+        #yesBtn:hover, #noGiftBtn:hover {
             background-color: #b5179e;
         }
-        #noBtn {
+        #noBtn, #yesGiftBtn {
             background-color: #e0e0e0;
             color: #555;
             position: absolute;
             right: 0;
         }
+
         .hidden-content {
             display: none;
             margin-top: 15px;
@@ -97,12 +112,19 @@
             font-weight: bold;
             animation: fadeInScale 1s ease-in-out;
         }
+        
+        .gift-section {
+            display: none;
+            margin-top: 20px;
+            animation: fadeInScale 1s ease-in-out;
+        }
+
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* ပျံနေတဲ့ ပုံများအတွက် CSS */
+        /* ပျံနေတဲ့ ပုံများ */
         .floating-photo {
             position: absolute;
             width: 50px;
@@ -137,7 +159,6 @@
 </head>
 <body>
 
-    <!-- နောက်ခံတွင် ပျံနေမည့် ပုံများ -->
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
@@ -148,14 +169,18 @@
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
 
     <div class="container" id="mainCard">
-        <!-- ပထမဆုံး အသဲပုံအကြီးကြီး ပေါ်နေမည် -->
+        <!-- အစပိုင်း အသဲပုံ -->
         <div class="big-heart" id="heartIcon">💖</div>
         
-        <!-- ချစ်တယ်နှိပ်မှ ပေါ်မည့် လေးထောင့်ပုံကြီး -->
+        <!-- ပထမအဆင့် ပုံ -->
         <img src="IMG_20260221_125127_941.webp" alt="My Love" class="result-photo" id="resultPhoto">
+        
+        <!-- နောက်ဆုံးအဆင့် လက်ဆောင်ပုံ (လိုချင်တဲ့ပုံနာမည်နဲ့ လဲလို့ရပါတယ်) -->
+        <img src="IMG_20260221_125127_941.webp" alt="Gift Photo" class="final-photo" id="finalPhoto">
         
         <h2 id="questionText">ကိုယ့်ကို ချစ်လားဟင်? 🥺</h2>
         
+        <!-- ပထမ ခလုတ်များ -->
         <div class="btn-group" id="btnGroup">
             <button id="yesBtn" onclick="sayYes()">ချစ်တယ် ❤️</button>
             <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">မချစ်ဘူး 😜</button>
@@ -163,6 +188,19 @@
 
         <div id="successText" class="hidden-content">
             ဟီးဟီး သိသားပဲ... ကို လည်း အများကြီး ချစ်တယ်နော် 😘✨
+        </div>
+
+        <!-- ဒုတိယအဆင့် မွေးနေ့လက်ဆောင် မေးခွန်းနှင့် ခလုတ်များ -->
+        <div id="giftSection" class="gift-section">
+            <h2 id="giftQuestion">မွေးနေ့လက်ဆောင် ယူမှာလား? 🎁</h2>
+            <div class="btn-group">
+                <button id="noGiftBtn" onclick="takeGift()">မယူဘူး 🤭</button>
+                <button id="yesGiftBtn" onmouseover="moveGiftYes()" onclick="moveGiftYes()">ယူမယ် 🥳</button>
+            </div>
+        </div>
+
+        <div id="finalText" class="hidden-content">
+            Happy Birthday ပါ သဲသဲလေးရေ... ပျော်ရွှင်စရာတွေနဲ့ ပြည့်စုံပါစေရှင် 🎉🎂❤️
         </div>
     </div>
 
@@ -181,6 +219,28 @@
             
             document.getElementById('resultPhoto').style.display = 'block';
             document.getElementById('successText').style.display = 'block';
+
+            // ၁.၅ စက္ကန့်ကြာရင် မွေးနေ့လက်ဆောင် မေးခွန်းအပိုင်းသို့ အလိုအလျောက် ကူးပြောင်းမည်
+            setTimeout(() => {
+                document.getElementById('successText').style.display = 'none';
+                document.getElementById('giftSection').style.display = 'block';
+            }, 1800);
+        }
+
+        function moveGiftYes() {
+            const yesGiftBtn = document.getElementById('yesGiftBtn');
+            const x = (Math.random() - 0.5) * 180;
+            const y = (Math.random() - 0.5) * 120;
+            yesGiftBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function takeGift() {
+            document.getElementById('giftQuestion').style.display = 'none';
+            document.getElementById('giftSection').style.display = 'none';
+            document.getElementById('resultPhoto').style.display = 'none';
+            
+            document.getElementById('finalPhoto').style.display = 'block';
+            document.getElementById('finalText').style.display = 'block';
         }
     </script>
 
