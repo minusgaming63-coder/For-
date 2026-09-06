@@ -19,24 +19,25 @@
         }
         .container {
             background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 35px 25px;
+            border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             max-width: 85%;
             width: 320px;
             z-index: 10;
             position: relative;
         }
-        /* ပထမဆုံးပေါ်မည့် ပုံ */
-        img.question-photo {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #ffffff;
+        /* အသဲပုံအကြီးကြီးအတွက် စတိုင် */
+        .big-heart {
+            font-size: 70px;
             margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: heartbeat 1.2s infinite;
         }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
         /* ချစ်တယ်နှိပ်မှ ပေါ်မည့် လေးထောင့်ပုံကြီး */
         img.result-photo {
             width: 150px;
@@ -55,10 +56,10 @@
             margin-bottom: 25px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        /* ခလုတ်နှစ်ခုကို ဘယ်/ညာ သေသပ်စွာ ချပေးသော CSS */
+        /* ခလုတ်နှစ်ခုကို ဘယ်/ညာ သေသပ်စွာ ခွဲထုတ်ထားသော CSS */
         .btn-group {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             width: 100%;
             margin-top: 20px;
@@ -86,7 +87,7 @@
             background-color: #e0e0e0;
             color: #555;
             position: absolute;
-            right: 10px;
+            right: 0;
         }
         .hidden-content {
             display: none;
@@ -147,8 +148,8 @@
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
 
     <div class="container" id="mainCard">
-        <!-- ပထမဆုံးပေါ်မည့် ပုံ -->
-        <img src="9188b6f447964a9f2b072deebcb3e641.jpg" alt="Question Photo" class="question-photo" id="questionPhoto">
+        <!-- ပထမဆုံး အသဲပုံအကြီးကြီး ပေါ်နေမည် -->
+        <div class="big-heart" id="heartIcon">💖</div>
         
         <!-- ချစ်တယ်နှိပ်မှ ပေါ်မည့် လေးထောင့်ပုံကြီး -->
         <img src="IMG_20260221_125127_941.webp" alt="My Love" class="result-photo" id="resultPhoto">
@@ -174,7 +175,7 @@
         }
 
         function sayYes() {
-            document.getElementById('questionPhoto').style.display = 'none';
+            document.getElementById('heartIcon').style.display = 'none';
             document.getElementById('btnGroup').style.display = 'none';
             document.getElementById('questionText').style.display = 'none';
             
