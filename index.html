@@ -2,14 +2,67 @@
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <title>Surprise For You!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise For You! ❤️</title>
     <style>
-        body { background-color: #1a1a1a; color: #fff; text-align: center; padding-top: 100px; font-family: sans-serif; }
-        h1 { color: #ff6b6b; }
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            font-family: sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .heart {
+            font-size: 50px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            max-width: 90%;
+        }
+
+        img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            margin: 15px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>🎉 Surprise! 🎉</h1>
-    <p>ဒီနေရာမှာ ပေါ်စေချင်တဲ့ စာသားနဲ့ ပုံတွေကို ထည့်လို့ရပါတယ်။</p>
+
+    <div class="heart">💖</div>
+    <h1>🎉 မင်းအတွက် အထူး Surprise ပါ! 🎉</h1>
+    
+    <!-- ကိုယ့်ရဲ့ ပုံထည့်မယ့်နေရာ -->
+    <img src="">
+
+    <p>Happy Birthdayပါသဲသဲလေးရေ</p>
+
 </body>
 </html>
