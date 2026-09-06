@@ -22,13 +22,23 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            max-width: 80%;
-            width: 300px;
+            max-width: 85%;
+            width: 320px;
             z-index: 10;
             position: relative;
         }
-        /* လေးထောင့်ပုံစံ ဓာတ်ပုံ */
-        img.main-photo {
+        /* ပထမဆုံးပေါ်မည့် ပုံ (Question Photo) */
+        img.question-photo {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        /* ချစ်တယ်နှိပ်မှ ပေါ်မည့် လေးထောင့်ပုံကြီး (Result Photo) */
+        img.result-photo {
             width: 150px;
             height: 200px;
             object-fit: cover;
@@ -36,29 +46,33 @@
             border: 4px solid #ffffff;
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none; /* အစပိုင်းတွင် ဖျောက်ထားမည် */
+            animation: fadeInScale 1s ease-in-out;
         }
         h2 {
             color: #b5179e;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 22px;
+            margin-bottom: 25px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            margin-top: 20px;
             position: relative;
-            margin-top: 30px;
-            height: 60px;
+            min-height: 50px;
         }
         button {
-            padding: 12px 30px;
-            font-size: 18px;
+            padding: 10px 20px;
+            font-size: 16px;
             border: none;
-            border-radius: 30px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.3s ease;
+            transition: 0.2s ease;
         }
         #yesBtn {
             background-color: #f72585;
@@ -72,15 +86,13 @@
             background-color: #e0e0e0;
             color: #555;
             position: absolute;
-        }
-        #noBtn:hover {
-            background-color: #d0d0d0;
+            right: 20px;
         }
         .hidden-content {
             display: none;
             margin-top: 15px;
             color: #b5179e;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             animation: fadeInScale 1s ease-in-out;
         }
@@ -89,7 +101,7 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* ပျံနေတဲ့ ပုံများအတွက် CSS */
+        /* ပျံနေတဲ့ ပုံများအတွက် CSS (နောက်ခံတွင် ပျံနေမည့် ပုံဟောင်း) */
         .floating-photo {
             position: absolute;
             width: 50px;
@@ -124,7 +136,7 @@
 </head>
 <body>
 
-    <!-- ပျံနေတဲ့ ပုံများ -->
+    <!-- နောက်ခံတွင် ပျံနေမည့် ပုံများ -->
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
@@ -135,11 +147,15 @@
     <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
 
     <div class="container" id="mainCard">
-        <!-- ပင်မပုံ (လေးထောင့်ပုံစံ၊ စာသားအလွန်အကျွံများ ဖယ်ထားသည်) -->
-        <img src="IMG_20260221_125127_941.webp" alt="My Love" class="main-photo">
-        <h2>ကိုယ့်ကို ချစ်လားဟင်? 🥺</h2>
+        <!-- ပထမဆုံးပေါ်မည့် ပုံအသစ် (9188b6f447964a9f2b072deebcb3e641.jpg) -->
+        <img src="9188b6f447964a9f2b072deebcb3e641.jpg" alt="Question Photo" class="question-photo" id="questionPhoto">
         
-        <div class="btn-group">
+        <!-- ချစ်တယ်နှိပ်မှ ပေါ်မည့် လေးထောင့်ပုံကြီး -->
+        <img src="IMG_20260221_125127_941.webp" alt="My Love" class="result-photo" id="resultPhoto">
+        
+        <h2 id="questionText">ကိုယ့်ကို ချစ်လားဟင်? 🥺</h2>
+        
+        <div class="btn-group" id="btnGroup">
             <button id="yesBtn" onclick="sayYes()">ချစ်တယ် ❤️</button>
             <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">မချစ်ဘူး 😜</button>
         </div>
@@ -152,16 +168,19 @@
     <script>
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 150);
-            const y = Math.random() * (window.innerHeight - 100);
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
+            const x = (Math.random() - 0.5) * 200;
+            const y = (Math.random() - 0.5) * 150;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
         }
 
         function sayYes() {
-            document.getElementById('yesBtn').style.display = 'none';
-            document.getElementById('noBtn').style.display = 'none';
-            document.querySelector('h2').style.display = 'none';
+            // ပထမပုံနှင့် ခလုတ်များ၊ မေးခွန်းကို ဖျောက်မည်
+            document.getElementById('questionPhoto').style.display = 'none';
+            document.getElementById('btnGroup').style.display = 'none';
+            document.getElementById('questionText').style.display = 'none';
+            
+            // လေးထောင့်ပုံကြီးနှင့် အောင်မြင်သည့် စာသားကို ပေါ်လာစေမည်
+            document.getElementById('resultPhoto').style.display = 'block';
             document.getElementById('successText').style.display = 'block';
         }
     </script>
