@@ -28,18 +28,20 @@
             position: relative;
         }
 
-        /* ပထမဆုံးပေါ်မည့် ကြောင်ပုံ (cat.jpg) */
-        img.question-photo {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #ffffff;
+        /* ပထမဆုံးပေါ်မည့် အသည်းနှလုံးစတစ်ကာပုံစံ */
+        .heart-sticker {
+            font-size: 70px;
             margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulseAnimation 1.5s infinite;
         }
 
-        /* ချစ်တယ် နှိပ်မှပေါ်မည့် ပုံ */
+        @keyframes pulseAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* ချစ်တယ် နှိပ်မှပေါ်မည့် ပုံ (1783852717341.jpg) */
         img.result-photo {
             width: 150px;
             height: 200px;
@@ -52,7 +54,7 @@
             animation: fadeInScale 1s ease-in-out;
         }
 
-        /* နောက်ဆုံး လက်ဆောင်ပုံ */
+        /* နောက်ဆုံး လက်ဆောင်ပုံ (1783852717341.jpg) */
         img.final-photo {
             width: 150px;
             height: 200px;
@@ -176,25 +178,24 @@
 </head>
 <body>
 
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
-    <img src="IMG_20260221_125127_941.webp" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
+    <img src="1783852717341.jpg" class="floating-photo" alt="Floating">
 
     <div class="container" id="mainCard">
-        <!-- ပထမဆုံးပေါ်မည့် ကြောင်ပုံ (cat.jpg) -->
-        <img src="1d567a6b0c6ba6be780c13ed6418a8b9.jpg" alt="Cat with knife" class="question-photo" id="questionPhoto">
-
+        <!-- ပထမဆုံးပေါ်မည့် အသည်းနှလုံးစတစ်ကာပုံစံ -->
+        <div class="heart-sticker" id="questionSticker">💖</div>
         
-        <!-- ချစ်တယ် နှိပ်မှပေါ်မည့် ပုံ -->
-        <img src="IMG_20260221_125127_941.webp" alt="My Love" class="result-photo" id="resultPhoto">
+        <!-- ချစ်တယ် နှိပ်မှပေါ်မည့် ပုံ (1783852717341.jpg) -->
+        <img src="1783852717341.jpg" alt="My Love" class="result-photo" id="resultPhoto">
         
-        <!-- နောက်ဆုံးအဆင့် လက်ဆောင်ပုံ -->
-        <img src="IMG_20260221_125127_941.webp" alt="Gift Photo" class="final-photo" id="finalPhoto">
+        <!-- နောက်ဆုံးအဆင့် လက်ဆောင်ပုံ (1783852717341.jpg) -->
+        <img src="1783852717341.jpg" alt="Gift Photo" class="final-photo" id="finalPhoto">
         
         <h2 id="questionText">ကိုယ့်ကို ချစ်လားဟင်? 🥺</h2>
         
@@ -229,7 +230,7 @@
         }
 
         function sayYes() {
-            document.getElementById('questionPhoto').style.display = 'none';
+            document.getElementById('questionSticker').style.display = 'none';
             document.getElementById('btnGroup').style.display = 'none';
             document.getElementById('questionText').style.display = 'none';
             
